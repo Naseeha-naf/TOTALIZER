@@ -1,0 +1,95 @@
+
+
+HTML code:
+<div class="calculator">
+  <input type="text" id="result" placeholder="0" readonly />
+  <span id="buttons"></span>
+</div>
+
+Css codes:
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+.calculator {
+  background: #fff;
+  width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#result {
+  width: 100%;
+  font-size: 1.5em;
+  text-align: right;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; 
+}
+button {
+  width: 23%;
+  padding: 10px;
+  margin: 5px 1%;
+  font-size: 1.2em;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+
+
+
+
+
+Java codes:
+const result = document.getElementById("result");
+const buttonsContainer = document.getElementById("buttons");
+
+const buttons = [
+  "7", "8", "9", "C",
+  "4", "5", "6", "+",
+  "1", "2", "3", "-",
+  "0", ".", "=", "*",
+  "/",
+];
+
+buttons.forEach((button) => {
+  const btn = document.createElement("button");
+  btn.textContent = button;
+  btn.onclick = () => handleButtonClick(button);
+  buttonsContainer.appendChild(btn);
+});
+
+function handleButtonClick(value) {
+  if (value === "C") {
+    result.value = "";
+  } else if (value === "=") {
+    try {
+      result.value = eval(result.value);
+    } catch {
+      result.value = "Error";
+    }
+  } else {
+  if (result.value === "0" || result.value === "") {
+    result.value = value;
+  } else {
+    result.value += value;
+  }
+}
+Comment
